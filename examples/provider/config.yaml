@@ -3,23 +3,14 @@ kind: Namespace
 metadata:
   name: crossplane-system
 ---
-apiVersion: v1
-kind: Secret
-metadata:
-  namespace: crossplane-system
-  name: example-provider-secret
-type: Opaque
-data:
-  # credentials: BASE64ENCODED_PROVIDER_CREDS
----
-apiVersion: template.crossplane.io/v1alpha1
+apiVersion: yandex.crossplane.io/v1alpha1
 kind: ProviderConfig
 metadata:
-  name: example
+  name: default
 spec:
   credentials:
     source: Secret
     secretRef:
       namespace: crossplane-system
-      name: example-provider-secret
-      key: credentials
+      name: yandex-credentials
+      key: creds

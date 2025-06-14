@@ -4,18 +4,18 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.16.5
-  name: mytypes.sample.template.crossplane.io
+  name: vpcs.network.yandex.crossplane.io
 spec:
-  group: sample.template.crossplane.io
+  group: network.yandex.crossplane.io
   names:
     categories:
     - crossplane
     - managed
-    - template
-    kind: MyType
-    listKind: MyTypeList
-    plural: mytypes
-    singular: mytype
+    - yandex
+    kind: VPC
+    listKind: VPCList
+    plural: vpcs
+    singular: vpc
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: A MyType is an example API type.
+        description: A VPC is an example API type.
         properties:
           apiVersion:
             description: |-
@@ -54,7 +54,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: A MyTypeSpec defines the desired state of a MyType.
+            description: A VPCSpec defines the desired state of a VPC.
             properties:
               deletionPolicy:
                 default: Delete
@@ -71,12 +71,12 @@ spec:
                 - Delete
                 type: string
               forProvider:
-                description: MyTypeParameters are the configurable fields of a MyType.
+                description: VPCParameters are the configurable fields of a VPC.
                 properties:
-                  configurableField:
+                  name:
                     type: string
                 required:
-                - configurableField
+                - name
                 type: object
               managementPolicies:
                 default:
@@ -246,17 +246,15 @@ spec:
             - forProvider
             type: object
           status:
-            description: A MyTypeStatus represents the observed state of a MyType.
+            description: A VPCStatus represents the observed state of a VPC.
             properties:
               atProvider:
-                description: MyTypeObservation are the observable fields of a MyType.
+                description: VPCObservation are the observable fields of a VPC.
                 properties:
-                  configurableField:
-                    type: string
-                  observableField:
+                  name:
                     type: string
                 required:
-                - configurableField
+                - name
                 type: object
               conditions:
                 description: Conditions of the resource.

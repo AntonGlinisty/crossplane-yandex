@@ -1,0 +1,9 @@
+apiVersion: network.yandex.crossplane.io/v1alpha1
+kind: VPC
+metadata:
+  name: my-vpc
+spec:
+  forProvider:
+    name: my-vpc
+  providerConfigRef:
+    name: default
